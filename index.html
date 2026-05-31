@@ -30,8 +30,8 @@
     .field { margin-bottom: 14px; }
     .field:last-child { margin-bottom: 0; }
     .field label { font-size: 13px; color: #666; display: block; margin-bottom: 6px; font-weight: 500; }
-    .field input { width: 100%; padding: 11px 14px; font-size: 16px; border: 1.5px solid #e8e8e8; border-radius: 10px; background: #fff; color: #1a1a1a; font-family: inherit; transition: border-color 0.15s; }
-    .field input:focus { outline: none; border-color: #4f7cff; }
+    .field input, .field select { width: 100%; padding: 11px 14px; font-size: 16px; border: 1.5px solid #e8e8e8; border-radius: 10px; background: #fff; color: #1a1a1a; font-family: inherit; transition: border-color 0.15s; }
+    .field input:focus, .field select:focus { outline: none; border-color: #4f7cff; }
     .field input::placeholder { color: #bbb; }
     .salary-display { width: 100%; padding: 11px 14px; font-size: 16px; border: 1.5px solid #e8e8e8; border-radius: 10px; background: #f7f7f7; color: #666; }
 
@@ -39,10 +39,8 @@
     .two-col .field { flex: 1; }
 
     .divider { border: none; border-top: 1px solid #f0f0f0; margin: 14px 0; }
-
     .group-label { font-size: 13px; font-weight: 600; color: #444; margin-bottom: 10px; }
 
-    .results { }
     .result-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f5f5f5; }
     .result-row:last-child { border-bottom: none; }
     .result-row.total { padding-top: 12px; margin-top: 2px; border-top: 1px solid #e8e8e8; border-bottom: none; }
@@ -55,22 +53,31 @@
     .save-btn:active { transform: scale(0.98); background: #3a67e8; }
     .save-btn:disabled { background: #c8d4ff; cursor: not-allowed; transform: none; }
 
-    .month-row { display: flex; justify-content: space-between; align-items: center; padding: 13px 0; border-bottom: 1px solid #f5f5f5; }
-    .month-row:last-child { border-bottom: none; }
-    .month-name { font-size: 15px; font-weight: 500; }
-    .month-amounts { display: flex; gap: 16px; align-items: center; }
+    .add-past-btn { width: 100%; padding: 12px; font-size: 14px; font-weight: 500; background: transparent; border: 1.5px dashed #ddd; border-radius: 12px; cursor: pointer; color: #888; transition: all 0.15s; margin-bottom: 14px; }
+    .add-past-btn:hover { background: #f7f7f7; }
+
+    .past-form { background: #fff; border-radius: 14px; padding: 16px; margin-bottom: 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+    .past-form-title { font-size: 15px; font-weight: 600; margin-bottom: 14px; }
+    .past-form .field input, .past-form .field select { padding: 11px 14px; font-size: 16px; border: 1.5px solid #e8e8e8; border-radius: 10px; background: #fff; color: #1a1a1a; font-family: inherit; width: 100%; }
+    .past-form .field input:focus, .past-form .field select:focus { outline: none; border-color: #4f7cff; }
+    .add-entry-btn { width: 100%; padding: 12px; font-size: 15px; font-weight: 600; background: #1a1a1a; border: none; border-radius: 10px; cursor: pointer; color: #fff; margin-top: 4px; }
+    .add-entry-btn:active { transform: scale(0.98); }
+
+    .entry-row { display: flex; align-items: center; gap: 10px; padding: 12px 0; border-bottom: 1px solid #f5f5f5; }
+    .entry-row:last-child { border-bottom: none; }
+    .entry-check { width: 18px; height: 18px; accent-color: #1a9e5c; cursor: pointer; flex-shrink: 0; }
+    .entry-info { flex: 1; min-width: 0; }
+    .entry-month { font-size: 15px; font-weight: 500; color: #1a1a1a; }
+    .entry-month.received { color: #bbb; text-decoration: line-through; }
+    .entry-tag { font-size: 11px; color: #aaa; margin-top: 2px; }
+    .entry-amounts { display: flex; gap: 14px; flex-shrink: 0; }
     .amount-block { text-align: right; }
-    .amount-val { font-size: 14px; font-weight: 600; color: #1a1a1a; }
+    .amount-val { font-size: 13px; font-weight: 600; color: #1a1a1a; }
     .amount-lbl { font-size: 11px; color: #aaa; }
-    .del-btn { background: none; border: none; cursor: pointer; color: #ccc; font-size: 20px; padding: 4px; margin-left: 4px; }
+    .del-btn { background: none; border: none; cursor: pointer; color: #ccc; font-size: 18px; padding: 4px; flex-shrink: 0; }
     .del-btn:active { color: #e24b4a; }
 
     .empty { text-align: center; padding: 32px 16px; color: #bbb; font-size: 14px; line-height: 1.6; }
-
-    .settings-field { margin-bottom: 14px; }
-    .settings-field label { font-size: 13px; color: #666; font-weight: 500; display: block; margin-bottom: 6px; }
-    .settings-field input { width: 100%; padding: 11px 14px; font-size: 16px; border: 1.5px solid #e8e8e8; border-radius: 10px; background: #fff; color: #1a1a1a; font-family: inherit; }
-    .settings-field input:focus { outline: none; border-color: #4f7cff; }
     .hint { font-size: 12px; color: #bbb; margin-top: 5px; }
 
     .bottomnav { position: fixed; bottom: 0; left: 0; right: 0; background: #fff; border-top: 1px solid #e8e8e8; display: flex; z-index: 10; padding-bottom: env(safe-area-inset-bottom); }
@@ -105,7 +112,6 @@
       <div class="field" id="salary-field"></div>
 
       <hr class="divider">
-
       <div class="group-label">Overtime hours</div>
       <div class="two-col">
         <div class="field">
@@ -119,18 +125,17 @@
       </div>
 
       <hr class="divider">
-
-      <div class="group-label">Night differential hours</div>
+      <div class="group-label">Night differential</div>
       <div class="two-col">
         <div class="field">
-          <label>ND hours</label>
-          <input type="number" id="nd-hrs" min="0" step="0.5" placeholder="0" oninput="compute()">
+          <label>Number of days</label>
+          <input type="number" id="nd-days" min="0" step="1" placeholder="0" oninput="compute()">
         </div>
         <div style="flex:1"></div>
       </div>
     </div>
 
-    <div class="card results">
+    <div class="card">
       <div class="result-row">
         <span class="result-label">Regular Day OT</span>
         <span class="result-val" id="res-reg">₱0.00</span>
@@ -150,15 +155,49 @@
       </div>
     </div>
 
-    <button class="save-btn" id="save-btn" onclick="saveEntry()" disabled>Save to Notepad</button>
+    <button class="save-btn" id="save-btn" onclick="saveFromCalc()" disabled>Save to Notepad</button>
   </div>
 
   <!-- NOTEPAD -->
   <div class="screen" id="screen-notepad">
+    <button class="add-past-btn" onclick="togglePastForm()" id="past-form-toggle">+ Add past entry</button>
+
+    <div class="past-form" id="past-form" style="display:none">
+      <div class="past-form-title">Add past payout</div>
+      <div class="two-col">
+        <div class="field">
+          <label>Month</label>
+          <select id="past-month">
+            <option value="1">January</option><option value="2">February</option>
+            <option value="3">March</option><option value="4">April</option>
+            <option value="5">May</option><option value="6">June</option>
+            <option value="7">July</option><option value="8">August</option>
+            <option value="9">September</option><option value="10">October</option>
+            <option value="11">November</option><option value="12">December</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Year</label>
+          <input type="number" id="past-year" placeholder="2024" min="2000" max="2099">
+        </div>
+      </div>
+      <div class="two-col">
+        <div class="field">
+          <label>OT amount (₱)</label>
+          <input type="number" id="past-ot" placeholder="0.00" min="0" step="0.01">
+        </div>
+        <div class="field">
+          <label>ND amount (₱)</label>
+          <input type="number" id="past-nd" placeholder="0.00" min="0" step="0.01">
+        </div>
+      </div>
+      <button class="add-entry-btn" onclick="addPastEntry()">Add entry</button>
+    </div>
+
     <div class="card">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-        <div class="section-label" style="margin:0">Monthly Summary</div>
-        <div style="display:flex; gap:24px; font-size:11px; color:#aaa; padding-right:30px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <div class="section-label" style="margin:0">Records</div>
+        <div style="display:flex;gap:20px;font-size:11px;color:#aaa;padding-right:28px;">
           <span>OT</span><span>ND</span>
         </div>
       </div>
@@ -170,11 +209,11 @@
   <div class="screen" id="screen-settings">
     <div class="card">
       <div class="section-label">My Position</div>
-      <div class="settings-field">
+      <div class="field">
         <label>Position label</label>
         <input type="text" id="my-label" placeholder="e.g. Admin Officer I" oninput="saveSettings()">
       </div>
-      <div class="settings-field">
+      <div class="field" style="margin-bottom:0">
         <label>Base monthly salary (₱)</label>
         <input type="number" id="my-salary" placeholder="e.g. 25000" oninput="saveSettings()">
         <p class="hint">Used for your OT and ND calculations.</p>
@@ -184,7 +223,6 @@
 
 </div>
 
-<!-- BOTTOM NAV -->
 <nav class="bottomnav">
   <button class="nav-btn active" id="nav-calc" onclick="showScreen('calc', this)">
     <svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="10" y2="10"/><line x1="14" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="10" y2="14"/><line x1="14" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="10" y2="18"/><line x1="14" y1="18" x2="16" y2="18"/></svg>
@@ -206,14 +244,17 @@
 let state = { myLabel: '', mySalary: 0, notepad: {}, mode: 'mine' };
 
 function load() {
-  try { const s = localStorage.getItem('ot_pwa'); if (s) state = {...state, ...JSON.parse(s)}; } catch(e) {}
+  try { const s = localStorage.getItem('ot_pwa_v4'); if (s) state = {...state, ...JSON.parse(s)}; } catch(e) {}
   document.getElementById('my-label').value = state.myLabel || '';
   document.getElementById('my-salary').value = state.mySalary || '';
+  const now = new Date();
+  document.getElementById('past-month').value = now.getMonth() + 1;
+  document.getElementById('past-year').value = now.getFullYear();
   renderSalaryField();
   renderNotepad();
 }
 
-function persist() { try { localStorage.setItem('ot_pwa', JSON.stringify(state)); } catch(e) {} }
+function persist() { try { localStorage.setItem('ot_pwa_v4', JSON.stringify(state)); } catch(e) {} }
 
 function showScreen(name, btn) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -237,13 +278,12 @@ function renderSalaryField() {
   const f = document.getElementById('salary-field');
   if (state.mode === 'mine') {
     const has = state.mySalary > 0;
-    f.innerHTML = `<label>Base monthly salary (₱)</label>
-      <div class="salary-display">${has ? '₱' + Number(state.mySalary).toLocaleString('en-PH') : '—'}</div>
-      ${!has ? '<p class="hint">Set your salary in Settings first.</p>' : ''}`;
+    f.innerHTML = '<label>Base monthly salary (₱)</label>'
+      + '<div class="salary-display">' + (has ? '₱' + Number(state.mySalary).toLocaleString('en-PH') : '—') + '</div>'
+      + (!has ? '<p class="hint">Set your salary in Settings first.</p>' : '');
   } else {
-    f.innerHTML = `<label>Base monthly salary (₱)</label>
-      <input type="number" id="other-sal" min="0" placeholder="Type salary to check" oninput="compute()"
-        style="width:100%;padding:11px 14px;font-size:16px;border:1.5px solid #e8e8e8;border-radius:10px;background:#fff;color:#1a1a1a;font-family:inherit;">`;
+    f.innerHTML = '<label>Base monthly salary (₱)</label>'
+      + '<input type="number" id="other-sal" min="0" placeholder="Type salary to check" oninput="compute()">';
   }
   updateSaveBtn();
 }
@@ -260,11 +300,11 @@ function compute() {
   const sal = getSalary();
   const regH = parseFloat(document.getElementById('ot-reg').value) || 0;
   const offH = parseFloat(document.getElementById('ot-off').value) || 0;
-  const ndH = parseFloat(document.getElementById('nd-hrs').value) || 0;
+  const ndD = parseFloat(document.getElementById('nd-days').value) || 0;
   const hr = sal / 22 / 8;
   const reg = hr * 1.25 * regH * 0.75;
   const off = hr * 1.5 * offH * 0.75;
-  const nd = hr * 0.2 * ndH * 0.75;
+  const nd = (sal / 22) * 0.20 * ndD * 0.75;
   document.getElementById('res-reg').textContent = fmt(reg);
   document.getElementById('res-off').textContent = fmt(off);
   document.getElementById('res-ot').textContent = fmt(reg + off);
@@ -276,19 +316,51 @@ function updateSaveBtn() {
   document.getElementById('save-btn').disabled = !(state.mode === 'mine' && state.mySalary > 0);
 }
 
-function saveEntry() {
+function saveFromCalc() {
   const sal = state.mySalary;
   const regH = parseFloat(document.getElementById('ot-reg').value) || 0;
   const offH = parseFloat(document.getElementById('ot-off').value) || 0;
-  const ndH = parseFloat(document.getElementById('nd-hrs').value) || 0;
+  const ndD = parseFloat(document.getElementById('nd-days').value) || 0;
   const hr = sal / 22 / 8;
   const ot = (hr * 1.25 * regH * 0.75) + (hr * 1.5 * offH * 0.75);
-  const nd = hr * 0.2 * ndH * 0.75;
+  const nd = (sal / 22) * 0.20 * ndD * 0.75;
   const now = new Date();
   const key = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0');
-  state.notepad[key] = { ot: parseFloat(ot.toFixed(2)), nd: parseFloat(nd.toFixed(2)) };
+  state.notepad[key] = { ot: parseFloat(ot.toFixed(2)), nd: parseFloat(nd.toFixed(2)), received: false, manual: false };
   persist();
   toast('Saved to ' + monthLabel(key));
+}
+
+function togglePastForm() {
+  const f = document.getElementById('past-form');
+  const btn = document.getElementById('past-form-toggle');
+  const visible = f.style.display !== 'none';
+  f.style.display = visible ? 'none' : 'block';
+  btn.textContent = visible ? '+ Add past entry' : '✕ Cancel';
+}
+
+function addPastEntry() {
+  const month = document.getElementById('past-month').value;
+  const year = document.getElementById('past-year').value;
+  const ot = parseFloat(document.getElementById('past-ot').value) || 0;
+  const nd = parseFloat(document.getElementById('past-nd').value) || 0;
+  if (!year || year < 2000) { toast('Please enter a valid year'); return; }
+  const key = year + '-' + String(month).padStart(2,'0');
+  state.notepad[key] = { ot: parseFloat(ot.toFixed(2)), nd: parseFloat(nd.toFixed(2)), received: false, manual: true };
+  persist();
+  document.getElementById('past-ot').value = '';
+  document.getElementById('past-nd').value = '';
+  togglePastForm();
+  renderNotepad();
+  toast('Added ' + monthLabel(key));
+}
+
+function toggleReceived(key) {
+  if (state.notepad[key]) {
+    state.notepad[key].received = !state.notepad[key].received;
+    persist();
+    renderNotepad();
+  }
 }
 
 function monthLabel(key) {
@@ -299,16 +371,26 @@ function monthLabel(key) {
 function renderNotepad() {
   const el = document.getElementById('notepad-list');
   const keys = Object.keys(state.notepad).sort().reverse();
-  if (!keys.length) { el.innerHTML = '<div class="empty">No entries yet.<br>Compute and save from the Calculator.</div>'; return; }
-  el.innerHTML = keys.map(k => `
-    <div class="month-row">
-      <span class="month-name">${monthLabel(k)}</span>
-      <div class="month-amounts">
-        <div class="amount-block"><div class="amount-val">${fmt(state.notepad[k].ot)}</div><div class="amount-lbl">OT</div></div>
-        <div class="amount-block"><div class="amount-val">${fmt(state.notepad[k].nd)}</div><div class="amount-lbl">ND</div></div>
-        <button class="del-btn" onclick="delEntry('${k}')" aria-label="Delete">&#10005;</button>
-      </div>
-    </div>`).join('');
+  if (!keys.length) {
+    el.innerHTML = '<div class="empty">No records yet.<br>Save from the Calculator or add a past entry.</div>';
+    return;
+  }
+  el.innerHTML = keys.map(function(k) {
+    const e = state.notepad[k];
+    const rcv = e.received || false;
+    return '<div class="entry-row">'
+      + '<input type="checkbox" class="entry-check" ' + (rcv ? 'checked' : '') + ' onchange="toggleReceived(\'' + k + '\')" aria-label="Mark as received">'
+      + '<div class="entry-info">'
+      + '<div class="entry-month' + (rcv ? ' received' : '') + '">' + monthLabel(k) + '</div>'
+      + '<div class="entry-tag">' + (e.manual ? 'Manual entry' : 'From calculator') + (rcv ? ' · Received' : '') + '</div>'
+      + '</div>'
+      + '<div class="entry-amounts">'
+      + '<div class="amount-block"><div class="amount-val">' + fmt(e.ot) + '</div><div class="amount-lbl">OT</div></div>'
+      + '<div class="amount-block"><div class="amount-val">' + fmt(e.nd) + '</div><div class="amount-lbl">ND</div></div>'
+      + '</div>'
+      + '<button class="del-btn" onclick="delEntry(\'' + k + '\')" aria-label="Delete">&#10005;</button>'
+      + '</div>';
+  }).join('');
 }
 
 function delEntry(key) {
@@ -329,11 +411,11 @@ function toast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg;
   t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2200);
+  setTimeout(function() { t.classList.remove('show'); }, 2200);
 }
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js').catch(() => {});
+  navigator.serviceWorker.register('sw.js').catch(function() {});
 }
 
 load();
