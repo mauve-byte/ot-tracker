@@ -34,7 +34,6 @@
     .group-label { font-size: 13px; font-weight: 600; color: #444; margin-bottom: 10px; }
     .result-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f5f5f5; }
     .result-row:last-child { border-bottom: none; }
-    .result-row.total { padding-top: 12px; margin-top: 2px; border-top: 1px solid #e8e8e8; border-bottom: none; }
     .result-label { font-size: 14px; color: #666; }
     .result-label.strong { font-weight: 600; color: #1a1a1a; }
     .result-val { font-size: 17px; font-weight: 600; color: #1a1a1a; }
@@ -50,6 +49,8 @@
     .past-form .field input:focus, .past-form .field select:focus { outline: none; border-color: #4f7cff; }
     .add-entry-btn { width: 100%; padding: 12px; font-size: 15px; font-weight: 600; background: #1a1a1a; border: none; border-radius: 10px; cursor: pointer; color: #fff; margin-top: 4px; }
     .add-entry-btn:active { transform: scale(0.98); }
+    .year-group { margin-bottom: 14px; }
+    .year-header { font-size: 12px; font-weight: 700; color: #999; text-transform: uppercase; letter-spacing: 0.08em; padding-bottom: 10px; border-bottom: 1px solid #f0f0f0; margin-bottom: 4px; }
     .entry-row { padding: 12px 0; border-bottom: 1px solid #f5f5f5; }
     .entry-row:last-child { border-bottom: none; }
     .entry-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
@@ -95,7 +96,6 @@
         <button class="mode-btn" id="mode-other" onclick="setMode('other')">Others</button>
       </div>
       <div class="field" id="salary-field"></div>
-
       <hr class="divider">
       <div class="group-label">Period</div>
       <div class="two-col">
@@ -112,30 +112,26 @@
         </div>
         <div class="field"><label>Year</label><input type="number" id="calc-year" min="2000" max="2099" placeholder="2026"></div>
       </div>
-
       <hr class="divider">
       <div class="group-label">Overtime hours</div>
       <div class="two-col">
-        <div class="field"><label>Regular Day (in hours)</label><input type="number" id="ot-reg" min="0" step="0.5" placeholder="0" oninput="compute()"></div>
-        <div class="field"><label>Day Off (in hours)</label><input type="number" id="ot-off" min="0" step="0.5" placeholder="0" oninput="compute()"></div>
+        <div class="field"><label>Regular Day</label><input type="number" id="ot-reg" min="0" step="0.5" placeholder="0" oninput="compute()"></div>
+        <div class="field"><label>Day Off</label><input type="number" id="ot-off" min="0" step="0.5" placeholder="0" oninput="compute()"></div>
       </div>
-
       <hr class="divider">
       <div class="group-label">Night differential</div>
       <div class="two-col">
-        <div class="field"><label>Number of Night Service Hours</label><input type="number" id="nd-days" min="0" step="1" placeholder="0" oninput="compute()"></div>
+        <div class="field"><label>Number of days</label><input type="number" id="nd-days" min="0" step="1" placeholder="0" oninput="compute()"></div>
         <div style="flex:1"></div>
       </div>
     </div>
-
     <div class="card">
-      <div class="result-row"><span class="result-label">Regular Day OT</span><span class="result-val" id="res-reg">₱0.00</span></div>
-      <div class="result-row"><span class="result-label">Day Off OT</span><span class="result-val" id="res-off">₱0.00</span></div>
-      <div class="result-row total"><span class="result-label strong">Total OT</span><span class="result-val green" id="res-ot">₱0.00</span></div>
+      <div class="result-row"><span class="result-label">Regular Day OT</span><span class="result-val" id="res-reg">&#8369;0.00</span></div>
+      <div class="result-row"><span class="result-label">Day Off OT</span><span class="result-val" id="res-off">&#8369;0.00</span></div>
+      <div class="result-row"><span class="result-label strong">Total OT</span><span class="result-val green" id="res-ot">&#8369;0.00</span></div>
       <hr class="divider">
-      <div class="result-row"><span class="result-label">Night Differential</span><span class="result-val green" id="res-nd">₱0.00</span></div>
+      <div class="result-row"><span class="result-label">Night Differential</span><span class="result-val green" id="res-nd">&#8369;0.00</span></div>
     </div>
-
     <button class="save-btn" id="save-btn" onclick="saveFromCalc()" disabled>Save to Notepad</button>
   </div>
 
@@ -159,16 +155,12 @@
         <div class="field"><label>Year</label><input type="number" id="past-year" placeholder="2024" min="2000" max="2099"></div>
       </div>
       <div class="two-col">
-        <div class="field"><label>OT amount (₱)</label><input type="number" id="past-ot" placeholder="leave blank to keep existing" min="0" step="0.01"></div>
-        <div class="field"><label>ND amount (₱)</label><input type="number" id="past-nd" placeholder="leave blank to keep existing" min="0" step="0.01"></div>
+        <div class="field"><label>OT amount (&#8369;)</label><input type="number" id="past-ot" placeholder="leave blank to keep existing" min="0" step="0.01"></div>
+        <div class="field"><label>ND amount (&#8369;)</label><input type="number" id="past-nd" placeholder="leave blank to keep existing" min="0" step="0.01"></div>
       </div>
       <button class="add-entry-btn" onclick="addPastEntry()">Add entry</button>
     </div>
-
-    <div class="card">
-      <div class="section-label">Records</div>
-      <div id="notepad-list"></div>
-    </div>
+    <div id="notepad-list"></div>
   </div>
 
   <!-- SETTINGS -->
@@ -176,7 +168,7 @@
     <div class="card">
       <div class="section-label">My Position</div>
       <div class="field"><label>Position label</label><input type="text" id="my-label" placeholder="e.g. Admin Officer I" oninput="saveSettings()"></div>
-      <div class="field" style="margin-bottom:0"><label>Base monthly salary (₱)</label><input type="number" id="my-salary" placeholder="e.g. 25000" oninput="saveSettings()"><p class="hint">Used for your OT and ND calculations.</p></div>
+      <div class="field" style="margin-bottom:0"><label>Base monthly salary (&#8369;)</label><input type="number" id="my-salary" placeholder="e.g. 25000" oninput="saveSettings()"><p class="hint">Used for your OT and ND calculations.</p></div>
     </div>
   </div>
 
@@ -200,13 +192,13 @@
 <div class="toast" id="toast"></div>
 
 <script>
-let state = { myLabel: '', mySalary: 0, notepad: {}, mode: 'mine' };
+var state = { myLabel: '', mySalary: 0, notepad: {}, mode: 'mine' };
 
 function load() {
-  try { const s = localStorage.getItem('ot_pwa_v6'); if (s) state = {...state, ...JSON.parse(s)}; } catch(e) {}
+  try { var s = localStorage.getItem('ot_pwa_v8'); if (s) state = Object.assign({}, state, JSON.parse(s)); } catch(e) {}
   document.getElementById('my-label').value = state.myLabel || '';
   document.getElementById('my-salary').value = state.mySalary || '';
-  const now = new Date();
+  var now = new Date();
   document.getElementById('calc-month').value = now.getMonth() + 1;
   document.getElementById('calc-year').value = now.getFullYear();
   document.getElementById('past-month').value = now.getMonth() + 1;
@@ -215,7 +207,7 @@ function load() {
   renderNotepad();
 }
 
-function persist() { try { localStorage.setItem('ot_pwa_v6', JSON.stringify(state)); } catch(e) {} }
+function persist() { try { localStorage.setItem('ot_pwa_v8', JSON.stringify(state)); } catch(e) {} }
 
 function showScreen(name, btn) {
   document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('active'); });
@@ -258,18 +250,18 @@ function getSalary() {
 function fmt(n) { return '\u20b1' + n.toLocaleString('en-PH', {minimumFractionDigits:2, maximumFractionDigits:2}); }
 
 function compute() {
-  var sal = getSalary();
+  var sal  = getSalary();
   var regH = parseFloat(document.getElementById('ot-reg').value) || 0;
   var offH = parseFloat(document.getElementById('ot-off').value) || 0;
-  var ndD = parseFloat(document.getElementById('nd-days').value) || 0;
-  var hr = sal / 22 / 8;
-  var reg = hr * 1.25 * regH * 0.75;
-  var off = hr * 1.5 * offH * 0.75;
-  var nd = (sal / 22 /8) * 0.20 * ndD * 0.75;
+  var ndD  = parseFloat(document.getElementById('nd-days').value) || 0;
+  var hr   = sal / 22 / 8;
+  var reg  = hr * 1.25 * regH * 0.75;
+  var off  = hr * 1.5  * offH * 0.75;
+  var nd   = (sal / 22) * 0.20 * ndD * 0.75;
   document.getElementById('res-reg').textContent = fmt(reg);
   document.getElementById('res-off').textContent = fmt(off);
-  document.getElementById('res-ot').textContent = fmt(reg + off);
-  document.getElementById('res-nd').textContent = fmt(nd);
+  document.getElementById('res-ot').textContent  = fmt(reg + off);
+  document.getElementById('res-nd').textContent  = fmt(nd);
   updateSaveBtn();
 }
 
@@ -278,31 +270,25 @@ function updateSaveBtn() {
 }
 
 function saveFromCalc() {
-  var sal = state.mySalary;
-  var regH = parseFloat(document.getElementById('ot-reg').value) || 0;
-  var offH = parseFloat(document.getElementById('ot-off').value) || 0;
-  var ndD = parseFloat(document.getElementById('nd-days').value) || 0;
+  var sal   = state.mySalary;
+  var regH  = parseFloat(document.getElementById('ot-reg').value) || 0;
+  var offH  = parseFloat(document.getElementById('ot-off').value) || 0;
+  var ndD   = parseFloat(document.getElementById('nd-days').value) || 0;
   var month = document.getElementById('calc-month').value;
-  var year = document.getElementById('calc-year').value;
+  var year  = document.getElementById('calc-year').value;
   if (!year || year < 2000) { toast('Please enter a valid year'); return; }
-  var hr = sal / 22 / 8;
-  var ot = (hr * 1.25 * regH * 0.75) + (hr * 1.5 * offH * 0.75);
-  var nd = (sal / 22 / 8) * 0.20 * ndD * 0.75;
+  var hr  = sal / 22 / 8;
+  var ot  = (hr * 1.25 * regH * 0.75) + (hr * 1.5 * offH * 0.75);
+  var nd  = (sal / 22) * 0.20 * ndD * 0.75;
   var key = year + '-' + String(month).padStart(2,'0');
   var existing = state.notepad[key] || {};
-  state.notepad[key] = {
-    ot: parseFloat(ot.toFixed(2)),
-    nd: parseFloat(nd.toFixed(2)),
-    otReceived: existing.otReceived || false,
-    ndReceived: existing.ndReceived || false,
-    manual: false
-  };
+  state.notepad[key] = { ot: parseFloat(ot.toFixed(2)), nd: parseFloat(nd.toFixed(2)), otReceived: existing.otReceived||false, ndReceived: existing.ndReceived||false, manual: false };
   persist();
-  toast('Saved to ' + monthLabel(key));
+  toast('Saved to ' + fullMonthLabel(key));
 }
 
 function togglePastForm() {
-  var f = document.getElementById('past-form');
+  var f   = document.getElementById('past-form');
   var btn = document.getElementById('past-form-toggle');
   var visible = f.style.display !== 'none';
   f.style.display = visible ? 'none' : 'block';
@@ -311,17 +297,17 @@ function togglePastForm() {
 
 function addPastEntry() {
   var month = document.getElementById('past-month').value;
-  var year = document.getElementById('past-year').value;
+  var year  = document.getElementById('past-year').value;
   var otVal = document.getElementById('past-ot').value;
   var ndVal = document.getElementById('past-nd').value;
   if (!year || year < 2000) { toast('Please enter a valid year'); return; }
   var key = year + '-' + String(month).padStart(2,'0');
-  var existing = state.notepad[key] || { ot: 0, nd: 0, otReceived: false, ndReceived: false };
+  var existing = state.notepad[key] || { ot:0, nd:0, otReceived:false, ndReceived:false };
   state.notepad[key] = {
     ot: otVal !== '' ? parseFloat(parseFloat(otVal).toFixed(2)) : existing.ot,
     nd: ndVal !== '' ? parseFloat(parseFloat(ndVal).toFixed(2)) : existing.nd,
-    otReceived: existing.otReceived || false,
-    ndReceived: existing.ndReceived || false,
+    otReceived: existing.otReceived||false,
+    ndReceived: existing.ndReceived||false,
     manual: true
   };
   persist();
@@ -329,65 +315,83 @@ function addPastEntry() {
   document.getElementById('past-nd').value = '';
   togglePastForm();
   renderNotepad();
-  toast('Saved ' + monthLabel(key));
+  toast('Saved ' + fullMonthLabel(key));
 }
 
 function toggleOTReceived(key) {
   if (state.notepad[key]) { state.notepad[key].otReceived = !state.notepad[key].otReceived; persist(); renderNotepad(); }
 }
-
 function toggleNDReceived(key) {
   if (state.notepad[key]) { state.notepad[key].ndReceived = !state.notepad[key].ndReceived; persist(); renderNotepad(); }
 }
 
 function monthLabel(key) {
   var parts = key.split('-');
+  return new Date(parts[0], parts[1]-1).toLocaleString('en-PH', {month:'long'});
+}
+function fullMonthLabel(key) {
+  var parts = key.split('-');
   return new Date(parts[0], parts[1]-1).toLocaleString('en-PH', {month:'long', year:'numeric'});
 }
 
 function renderNotepad() {
-  var el = document.getElementById('notepad-list');
-  var keys = Object.keys(state.notepad).sort().reverse();
+  var el   = document.getElementById('notepad-list');
+  var keys = Object.keys(state.notepad).sort(); // ascending
+
   if (!keys.length) {
     el.innerHTML = '<div class="empty">No records yet.<br>Save from the Calculator or add a past entry.</div>';
     return;
   }
-  el.innerHTML = keys.map(function(k) {
-    var e = state.notepad[k];
-    var otRcv = e.otReceived || false;
-    var ndRcv = e.ndReceived || false;
-    return '<div class="entry-row">'
-      + '<div class="entry-top">'
-      + '<div><div class="entry-month">' + monthLabel(k) + '</div>'
-      + '<div class="entry-tag">' + (e.manual ? 'Manual entry' : 'From calculator') + '</div></div>'
-      + '<button class="del-btn" onclick="delEntry(\'' + k + '\')" aria-label="Delete">\u2715</button>'
-      + '</div>'
-      + '<div class="entry-bottom">'
-      + '<div class="entry-col' + (otRcv ? ' done' : '') + '">'
-      + '<input type="checkbox" ' + (otRcv ? 'checked' : '') + ' onchange="toggleOTReceived(\'' + k + '\')" aria-label="OT received">'
-      + '<div class="entry-col-info">'
-      + '<div class="entry-col-val' + (otRcv ? ' strike' : '') + '">' + fmt(e.ot) + '</div>'
-      + '<div class="entry-col-lbl">OT' + (otRcv ? ' \u00b7 Received' : '') + '</div>'
-      + '</div></div>'
-      + '<div class="entry-col' + (ndRcv ? ' done' : '') + '">'
-      + '<input type="checkbox" ' + (ndRcv ? 'checked' : '') + ' onchange="toggleNDReceived(\'' + k + '\')" aria-label="ND received">'
-      + '<div class="entry-col-info">'
-      + '<div class="entry-col-val' + (ndRcv ? ' strike' : '') + '">' + fmt(e.nd) + '</div>'
-      + '<div class="entry-col-lbl">ND' + (ndRcv ? ' \u00b7 Received' : '') + '</div>'
-      + '</div></div>'
-      + '</div></div>';
+
+  var byYear = {};
+  keys.forEach(function(k) {
+    var year = k.split('-')[0];
+    if (!byYear[year]) byYear[year] = [];
+    byYear[year].push(k);
+  });
+
+  var years = Object.keys(byYear).sort(); // ascending
+
+  el.innerHTML = years.map(function(year) {
+    var entries = byYear[year].map(function(k) {
+      var e    = state.notepad[k];
+      var otRcv = e.otReceived || false;
+      var ndRcv = e.ndReceived || false;
+      return '<div class="entry-row">'
+        + '<div class="entry-top">'
+        + '<div><div class="entry-month">' + monthLabel(k) + '</div>'
+        + '<div class="entry-tag">' + (e.manual ? 'Manual entry' : 'From calculator') + '</div></div>'
+        + '<button class="del-btn" onclick="delEntry(\'' + k + '\')" aria-label="Delete">\u2715</button>'
+        + '</div>'
+        + '<div class="entry-bottom">'
+        + '<div class="entry-col' + (otRcv ? ' done' : '') + '">'
+        + '<input type="checkbox" ' + (otRcv ? 'checked' : '') + ' onchange="toggleOTReceived(\'' + k + '\')" aria-label="OT received">'
+        + '<div class="entry-col-info">'
+        + '<div class="entry-col-val' + (otRcv ? ' strike' : '') + '">' + fmt(e.ot) + '</div>'
+        + '<div class="entry-col-lbl">OT' + (otRcv ? ' \u00b7 Received' : '') + '</div>'
+        + '</div></div>'
+        + '<div class="entry-col' + (ndRcv ? ' done' : '') + '">'
+        + '<input type="checkbox" ' + (ndRcv ? 'checked' : '') + ' onchange="toggleNDReceived(\'' + k + '\')" aria-label="ND received">'
+        + '<div class="entry-col-info">'
+        + '<div class="entry-col-val' + (ndRcv ? ' strike' : '') + '">' + fmt(e.nd) + '</div>'
+        + '<div class="entry-col-lbl">ND' + (ndRcv ? ' \u00b7 Received' : '') + '</div>'
+        + '</div></div>'
+        + '</div></div>';
+    }).join('');
+
+    return '<div class="year-group"><div class="card"><div class="year-header">' + year + '</div>' + entries + '</div></div>';
   }).join('');
 }
 
 function delEntry(key) {
-  if (!confirm('Delete ' + monthLabel(key) + '?')) return;
+  if (!confirm('Delete ' + fullMonthLabel(key) + '?')) return;
   delete state.notepad[key];
   persist();
   renderNotepad();
 }
 
 function saveSettings() {
-  state.myLabel = document.getElementById('my-label').value || '';
+  state.myLabel  = document.getElementById('my-label').value || '';
   state.mySalary = parseFloat(document.getElementById('my-salary').value) || 0;
   persist();
   if (state.mode === 'mine') renderSalaryField();
