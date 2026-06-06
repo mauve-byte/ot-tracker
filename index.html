@@ -121,7 +121,7 @@
       <hr class="divider">
       <div class="group-label">Night differential</div>
       <div class="two-col">
-        <div class="field"><label>Number of hours</label><input type="number" id="nd-days" min="0" step="1" placeholder="0" oninput="compute()"></div>
+        <div class="field"><label>Total number of days of eve & mid shift</label><input type="number" id="nd-days" min="0" step="1" placeholder="0" oninput="compute()"></div>
         <div style="flex:1"></div>
       </div>
     </div>
@@ -257,7 +257,7 @@ function compute() {
   var hr   = sal / 22 / 8;
   var reg  = hr * 1.25 * regH * 0.75;
   var off  = hr * 1.5  * offH * 0.75;
-  var nd   = (sal / 22/8) * 0.20 * ndD * 0.75;
+  var nd   = (sal / 22/8) * 0.20 * ndD*6 * 0.75;
   document.getElementById('res-reg').textContent = fmt(reg);
   document.getElementById('res-off').textContent = fmt(off);
   document.getElementById('res-ot').textContent  = fmt(reg + off);
@@ -279,7 +279,7 @@ function saveFromCalc() {
   if (!year || year < 2000) { toast('Please enter a valid year'); return; }
   var hr  = sal / 22 / 8;
   var ot  = (hr * 1.25 * regH * 0.75) + (hr * 1.5 * offH * 0.75);
-  var nd  = (sal / 22/8) * 0.20 * ndD * 0.75;
+  var nd  = (sal / 22/8) * 0.20 * ndD * 6 * 0.75;
   var key = year + '-' + String(month).padStart(2,'0');
   var existing = state.notepad[key] || {};
   state.notepad[key] = { ot: parseFloat(ot.toFixed(2)), nd: parseFloat(nd.toFixed(2)), otReceived: existing.otReceived||false, ndReceived: existing.ndReceived||false, manual: false };
