@@ -12,21 +12,15 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; color: #1a1a1a; min-height: 100vh; padding-bottom: 80px; }
-
     .topbar { background: #fff; border-bottom: 1px solid #e8e8e8; padding: 16px 20px; position: sticky; top: 0; z-index: 10; }
     .topbar h1 { font-size: 18px; font-weight: 600; }
     .topbar p { font-size: 13px; color: #888; margin-top: 1px; }
-
     .content { padding: 16px; max-width: 480px; margin: 0 auto; }
-
     .card { background: #fff; border-radius: 14px; padding: 16px; margin-bottom: 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
-
     .section-label { font-size: 11px; font-weight: 600; color: #999; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
-
     .mode-toggle { display: flex; background: #f0f0f0; border-radius: 10px; padding: 3px; margin-bottom: 16px; }
     .mode-btn { flex: 1; padding: 8px; font-size: 14px; font-weight: 500; background: transparent; border: none; border-radius: 8px; cursor: pointer; color: #888; transition: all 0.15s; }
     .mode-btn.active { background: #fff; color: #1a1a1a; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
-
     .field { margin-bottom: 14px; }
     .field:last-child { margin-bottom: 0; }
     .field label { font-size: 13px; color: #666; display: block; margin-bottom: 6px; font-weight: 500; }
@@ -34,13 +28,10 @@
     .field input:focus, .field select:focus { outline: none; border-color: #4f7cff; }
     .field input::placeholder { color: #bbb; }
     .salary-display { width: 100%; padding: 11px 14px; font-size: 16px; border: 1.5px solid #e8e8e8; border-radius: 10px; background: #f7f7f7; color: #666; }
-
     .two-col { display: flex; gap: 12px; }
     .two-col .field { flex: 1; }
-
     .divider { border: none; border-top: 1px solid #f0f0f0; margin: 14px 0; }
     .group-label { font-size: 13px; font-weight: 600; color: #444; margin-bottom: 10px; }
-
     .result-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f5f5f5; }
     .result-row:last-child { border-bottom: none; }
     .result-row.total { padding-top: 12px; margin-top: 2px; border-top: 1px solid #e8e8e8; border-bottom: none; }
@@ -48,46 +39,40 @@
     .result-label.strong { font-weight: 600; color: #1a1a1a; }
     .result-val { font-size: 17px; font-weight: 600; color: #1a1a1a; }
     .result-val.green { color: #1a9e5c; }
-
     .save-btn { width: 100%; padding: 15px; font-size: 16px; font-weight: 600; background: #4f7cff; border: none; border-radius: 12px; cursor: pointer; color: #fff; transition: all 0.15s; }
     .save-btn:active { transform: scale(0.98); background: #3a67e8; }
     .save-btn:disabled { background: #c8d4ff; cursor: not-allowed; transform: none; }
-
     .add-past-btn { width: 100%; padding: 12px; font-size: 14px; font-weight: 500; background: transparent; border: 1.5px dashed #ddd; border-radius: 12px; cursor: pointer; color: #888; transition: all 0.15s; margin-bottom: 14px; }
     .add-past-btn:hover { background: #f7f7f7; }
-
     .past-form { background: #fff; border-radius: 14px; padding: 16px; margin-bottom: 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
     .past-form-title { font-size: 15px; font-weight: 600; margin-bottom: 14px; }
     .past-form .field input, .past-form .field select { padding: 11px 14px; font-size: 16px; border: 1.5px solid #e8e8e8; border-radius: 10px; background: #fff; color: #1a1a1a; font-family: inherit; width: 100%; }
     .past-form .field input:focus, .past-form .field select:focus { outline: none; border-color: #4f7cff; }
     .add-entry-btn { width: 100%; padding: 12px; font-size: 15px; font-weight: 600; background: #1a1a1a; border: none; border-radius: 10px; cursor: pointer; color: #fff; margin-top: 4px; }
     .add-entry-btn:active { transform: scale(0.98); }
-
-    .entry-row { display: flex; align-items: center; gap: 10px; padding: 12px 0; border-bottom: 1px solid #f5f5f5; }
+    .entry-row { padding: 12px 0; border-bottom: 1px solid #f5f5f5; }
     .entry-row:last-child { border-bottom: none; }
-    .entry-check { width: 18px; height: 18px; accent-color: #1a9e5c; cursor: pointer; flex-shrink: 0; }
-    .entry-info { flex: 1; min-width: 0; }
+    .entry-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
     .entry-month { font-size: 15px; font-weight: 500; color: #1a1a1a; }
-    .entry-month.received { color: #bbb; text-decoration: line-through; }
     .entry-tag { font-size: 11px; color: #aaa; margin-top: 2px; }
-    .entry-amounts { display: flex; gap: 14px; flex-shrink: 0; }
-    .amount-block { text-align: right; }
-    .amount-val { font-size: 13px; font-weight: 600; color: #1a1a1a; }
-    .amount-lbl { font-size: 11px; color: #aaa; }
-    .del-btn { background: none; border: none; cursor: pointer; color: #ccc; font-size: 18px; padding: 4px; flex-shrink: 0; }
+    .del-btn { background: none; border: none; cursor: pointer; color: #ccc; font-size: 16px; padding: 4px; }
     .del-btn:active { color: #e24b4a; }
-
+    .entry-bottom { display: flex; gap: 10px; }
+    .entry-col { flex: 1; display: flex; align-items: center; gap: 8px; padding: 8px 10px; border: 1px solid #f0f0f0; border-radius: 10px; background: #fafafa; }
+    .entry-col.done { opacity: 0.5; }
+    .entry-col input[type=checkbox] { width: 16px; height: 16px; accent-color: #1a9e5c; cursor: pointer; flex-shrink: 0; margin: 0; }
+    .entry-col-info { flex: 1; }
+    .entry-col-val { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+    .entry-col-val.strike { text-decoration: line-through; color: #bbb; }
+    .entry-col-lbl { font-size: 11px; color: #aaa; }
     .empty { text-align: center; padding: 32px 16px; color: #bbb; font-size: 14px; line-height: 1.6; }
     .hint { font-size: 12px; color: #bbb; margin-top: 5px; }
-
     .bottomnav { position: fixed; bottom: 0; left: 0; right: 0; background: #fff; border-top: 1px solid #e8e8e8; display: flex; z-index: 10; padding-bottom: env(safe-area-inset-bottom); }
     .nav-btn { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 10px 4px; background: none; border: none; cursor: pointer; color: #bbb; font-size: 11px; font-weight: 500; transition: color 0.15s; }
     .nav-btn.active { color: #4f7cff; }
     .nav-btn svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-
     .screen { display: none; }
     .screen.active { display: block; }
-
     .toast { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); background: #1a1a1a; color: #fff; border-radius: 24px; padding: 10px 22px; font-size: 14px; font-weight: 500; opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 100; white-space: nowrap; }
     .toast.show { opacity: 1; }
   </style>
@@ -112,47 +97,43 @@
       <div class="field" id="salary-field"></div>
 
       <hr class="divider">
-      <div class="group-label">Overtime hours</div>
+      <div class="group-label">Period</div>
       <div class="two-col">
         <div class="field">
-          <label>Regular Day</label>
-          <input type="number" id="ot-reg" min="0" step="0.5" placeholder="0" oninput="compute()">
+          <label>Month</label>
+          <select id="calc-month">
+            <option value="1">January</option><option value="2">February</option>
+            <option value="3">March</option><option value="4">April</option>
+            <option value="5">May</option><option value="6">June</option>
+            <option value="7">July</option><option value="8">August</option>
+            <option value="9">September</option><option value="10">October</option>
+            <option value="11">November</option><option value="12">December</option>
+          </select>
         </div>
-        <div class="field">
-          <label>Day Off</label>
-          <input type="number" id="ot-off" min="0" step="0.5" placeholder="0" oninput="compute()">
-        </div>
+        <div class="field"><label>Year</label><input type="number" id="calc-year" min="2000" max="2099" placeholder="2026"></div>
+      </div>
+
+      <hr class="divider">
+      <div class="group-label">Overtime hours</div>
+      <div class="two-col">
+        <div class="field"><label>Regular Day (in hours)</label><input type="number" id="ot-reg" min="0" step="0.5" placeholder="0" oninput="compute()"></div>
+        <div class="field"><label>Day Off (in hours)</label><input type="number" id="ot-off" min="0" step="0.5" placeholder="0" oninput="compute()"></div>
       </div>
 
       <hr class="divider">
       <div class="group-label">Night differential</div>
       <div class="two-col">
-        <div class="field">
-          <label>Number of days</label>
-          <input type="number" id="nd-days" min="0" step="1" placeholder="0" oninput="compute()">
-        </div>
+        <div class="field"><label>Number of Night Service Hours</label><input type="number" id="nd-days" min="0" step="1" placeholder="0" oninput="compute()"></div>
         <div style="flex:1"></div>
       </div>
     </div>
 
     <div class="card">
-      <div class="result-row">
-        <span class="result-label">Regular Day OT</span>
-        <span class="result-val" id="res-reg">₱0.00</span>
-      </div>
-      <div class="result-row">
-        <span class="result-label">Day Off OT</span>
-        <span class="result-val" id="res-off">₱0.00</span>
-      </div>
-      <div class="result-row total">
-        <span class="result-label strong">Total OT</span>
-        <span class="result-val green" id="res-ot">₱0.00</span>
-      </div>
+      <div class="result-row"><span class="result-label">Regular Day OT</span><span class="result-val" id="res-reg">₱0.00</span></div>
+      <div class="result-row"><span class="result-label">Day Off OT</span><span class="result-val" id="res-off">₱0.00</span></div>
+      <div class="result-row total"><span class="result-label strong">Total OT</span><span class="result-val green" id="res-ot">₱0.00</span></div>
       <hr class="divider">
-      <div class="result-row">
-        <span class="result-label">Night Differential</span>
-        <span class="result-val green" id="res-nd">₱0.00</span>
-      </div>
+      <div class="result-row"><span class="result-label">Night Differential</span><span class="result-val green" id="res-nd">₱0.00</span></div>
     </div>
 
     <button class="save-btn" id="save-btn" onclick="saveFromCalc()" disabled>Save to Notepad</button>
@@ -161,7 +142,6 @@
   <!-- NOTEPAD -->
   <div class="screen" id="screen-notepad">
     <button class="add-past-btn" onclick="togglePastForm()" id="past-form-toggle">+ Add past entry</button>
-
     <div class="past-form" id="past-form" style="display:none">
       <div class="past-form-title">Add past payout</div>
       <div class="two-col">
@@ -176,31 +156,17 @@
             <option value="11">November</option><option value="12">December</option>
           </select>
         </div>
-        <div class="field">
-          <label>Year</label>
-          <input type="number" id="past-year" placeholder="2024" min="2000" max="2099">
-        </div>
+        <div class="field"><label>Year</label><input type="number" id="past-year" placeholder="2024" min="2000" max="2099"></div>
       </div>
       <div class="two-col">
-        <div class="field">
-          <label>OT amount (₱)</label>
-          <input type="number" id="past-ot" placeholder="0.00" min="0" step="0.01">
-        </div>
-        <div class="field">
-          <label>ND amount (₱)</label>
-          <input type="number" id="past-nd" placeholder="0.00" min="0" step="0.01">
-        </div>
+        <div class="field"><label>OT amount (₱)</label><input type="number" id="past-ot" placeholder="leave blank to keep existing" min="0" step="0.01"></div>
+        <div class="field"><label>ND amount (₱)</label><input type="number" id="past-nd" placeholder="leave blank to keep existing" min="0" step="0.01"></div>
       </div>
       <button class="add-entry-btn" onclick="addPastEntry()">Add entry</button>
     </div>
 
     <div class="card">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
-        <div class="section-label" style="margin:0">Records</div>
-        <div style="display:flex;gap:20px;font-size:11px;color:#aaa;padding-right:28px;">
-          <span>OT</span><span>ND</span>
-        </div>
-      </div>
+      <div class="section-label">Records</div>
       <div id="notepad-list"></div>
     </div>
   </div>
@@ -209,15 +175,8 @@
   <div class="screen" id="screen-settings">
     <div class="card">
       <div class="section-label">My Position</div>
-      <div class="field">
-        <label>Position label</label>
-        <input type="text" id="my-label" placeholder="e.g. Admin Officer I" oninput="saveSettings()">
-      </div>
-      <div class="field" style="margin-bottom:0">
-        <label>Base monthly salary (₱)</label>
-        <input type="number" id="my-salary" placeholder="e.g. 25000" oninput="saveSettings()">
-        <p class="hint">Used for your OT and ND calculations.</p>
-      </div>
+      <div class="field"><label>Position label</label><input type="text" id="my-label" placeholder="e.g. Admin Officer I" oninput="saveSettings()"></div>
+      <div class="field" style="margin-bottom:0"><label>Base monthly salary (₱)</label><input type="number" id="my-salary" placeholder="e.g. 25000" oninput="saveSettings()"><p class="hint">Used for your OT and ND calculations.</p></div>
     </div>
   </div>
 
@@ -244,24 +203,26 @@
 let state = { myLabel: '', mySalary: 0, notepad: {}, mode: 'mine' };
 
 function load() {
-  try { const s = localStorage.getItem('ot_pwa_v4'); if (s) state = {...state, ...JSON.parse(s)}; } catch(e) {}
+  try { const s = localStorage.getItem('ot_pwa_v6'); if (s) state = {...state, ...JSON.parse(s)}; } catch(e) {}
   document.getElementById('my-label').value = state.myLabel || '';
   document.getElementById('my-salary').value = state.mySalary || '';
   const now = new Date();
+  document.getElementById('calc-month').value = now.getMonth() + 1;
+  document.getElementById('calc-year').value = now.getFullYear();
   document.getElementById('past-month').value = now.getMonth() + 1;
   document.getElementById('past-year').value = now.getFullYear();
   renderSalaryField();
   renderNotepad();
 }
 
-function persist() { try { localStorage.setItem('ot_pwa_v4', JSON.stringify(state)); } catch(e) {} }
+function persist() { try { localStorage.setItem('ot_pwa_v6', JSON.stringify(state)); } catch(e) {} }
 
 function showScreen(name, btn) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('active'); });
+  document.querySelectorAll('.nav-btn').forEach(function(b) { b.classList.remove('active'); });
   document.getElementById('screen-' + name).classList.add('active');
   btn.classList.add('active');
-  const titles = { calc: 'Overtime & Night Differential', notepad: 'Monthly Records', settings: 'Settings' };
+  var titles = { calc: 'Overtime & Night Differential', notepad: 'Monthly Records', settings: 'Settings' };
   document.getElementById('topbar-sub').textContent = titles[name];
   if (name === 'notepad') renderNotepad();
 }
@@ -275,36 +236,36 @@ function setMode(mode) {
 }
 
 function renderSalaryField() {
-  const f = document.getElementById('salary-field');
+  var f = document.getElementById('salary-field');
   if (state.mode === 'mine') {
-    const has = state.mySalary > 0;
-    f.innerHTML = '<label>Base monthly salary (₱)</label>'
-      + '<div class="salary-display">' + (has ? '₱' + Number(state.mySalary).toLocaleString('en-PH') : '—') + '</div>'
+    var has = state.mySalary > 0;
+    f.innerHTML = '<label>Base monthly salary (\u20b1)</label>'
+      + '<div class="salary-display">' + (has ? '\u20b1' + Number(state.mySalary).toLocaleString('en-PH') : '\u2014') + '</div>'
       + (!has ? '<p class="hint">Set your salary in Settings first.</p>' : '');
   } else {
-    f.innerHTML = '<label>Base monthly salary (₱)</label>'
-      + '<input type="number" id="other-sal" min="0" placeholder="Type salary to check" oninput="compute()">';
+    f.innerHTML = '<label>Base monthly salary (\u20b1)</label>'
+      + '<input type="number" id="other-sal" min="0" placeholder="Type salary to check" oninput="compute()" style="width:100%;padding:11px 14px;font-size:16px;border:1.5px solid #e8e8e8;border-radius:10px;background:#fff;color:#1a1a1a;font-family:inherit;">';
   }
   updateSaveBtn();
 }
 
 function getSalary() {
   if (state.mode === 'mine') return state.mySalary || 0;
-  const el = document.getElementById('other-sal');
+  var el = document.getElementById('other-sal');
   return el ? (parseFloat(el.value) || 0) : 0;
 }
 
-function fmt(n) { return '₱' + n.toLocaleString('en-PH', {minimumFractionDigits:2, maximumFractionDigits:2}); }
+function fmt(n) { return '\u20b1' + n.toLocaleString('en-PH', {minimumFractionDigits:2, maximumFractionDigits:2}); }
 
 function compute() {
-  const sal = getSalary();
-  const regH = parseFloat(document.getElementById('ot-reg').value) || 0;
-  const offH = parseFloat(document.getElementById('ot-off').value) || 0;
-  const ndD = parseFloat(document.getElementById('nd-days').value) || 0;
-  const hr = sal / 22 / 8;
-  const reg = hr * 1.25 * regH * 0.75;
-  const off = hr * 1.5 * offH * 0.75;
-  const nd = (sal / 22) * 0.20 * ndD * 0.75;
+  var sal = getSalary();
+  var regH = parseFloat(document.getElementById('ot-reg').value) || 0;
+  var offH = parseFloat(document.getElementById('ot-off').value) || 0;
+  var ndD = parseFloat(document.getElementById('nd-days').value) || 0;
+  var hr = sal / 22 / 8;
+  var reg = hr * 1.25 * regH * 0.75;
+  var off = hr * 1.5 * offH * 0.75;
+  var nd = (sal / 22 /8) * 0.20 * ndD * 0.75;
   document.getElementById('res-reg').textContent = fmt(reg);
   document.getElementById('res-off').textContent = fmt(off);
   document.getElementById('res-ot').textContent = fmt(reg + off);
@@ -317,79 +278,104 @@ function updateSaveBtn() {
 }
 
 function saveFromCalc() {
-  const sal = state.mySalary;
-  const regH = parseFloat(document.getElementById('ot-reg').value) || 0;
-  const offH = parseFloat(document.getElementById('ot-off').value) || 0;
-  const ndD = parseFloat(document.getElementById('nd-days').value) || 0;
-  const hr = sal / 22 / 8;
-  const ot = (hr * 1.25 * regH * 0.75) + (hr * 1.5 * offH * 0.75);
-  const nd = (sal / 22) * 0.20 * ndD * 0.75;
-  const now = new Date();
-  const key = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0');
-  state.notepad[key] = { ot: parseFloat(ot.toFixed(2)), nd: parseFloat(nd.toFixed(2)), received: false, manual: false };
+  var sal = state.mySalary;
+  var regH = parseFloat(document.getElementById('ot-reg').value) || 0;
+  var offH = parseFloat(document.getElementById('ot-off').value) || 0;
+  var ndD = parseFloat(document.getElementById('nd-days').value) || 0;
+  var month = document.getElementById('calc-month').value;
+  var year = document.getElementById('calc-year').value;
+  if (!year || year < 2000) { toast('Please enter a valid year'); return; }
+  var hr = sal / 22 / 8;
+  var ot = (hr * 1.25 * regH * 0.75) + (hr * 1.5 * offH * 0.75);
+  var nd = (sal / 22 / 8) * 0.20 * ndD * 0.75;
+  var key = year + '-' + String(month).padStart(2,'0');
+  var existing = state.notepad[key] || {};
+  state.notepad[key] = {
+    ot: parseFloat(ot.toFixed(2)),
+    nd: parseFloat(nd.toFixed(2)),
+    otReceived: existing.otReceived || false,
+    ndReceived: existing.ndReceived || false,
+    manual: false
+  };
   persist();
   toast('Saved to ' + monthLabel(key));
 }
 
 function togglePastForm() {
-  const f = document.getElementById('past-form');
-  const btn = document.getElementById('past-form-toggle');
-  const visible = f.style.display !== 'none';
+  var f = document.getElementById('past-form');
+  var btn = document.getElementById('past-form-toggle');
+  var visible = f.style.display !== 'none';
   f.style.display = visible ? 'none' : 'block';
-  btn.textContent = visible ? '+ Add past entry' : '✕ Cancel';
+  btn.textContent = visible ? '+ Add past entry' : '\u2715 Cancel';
 }
 
 function addPastEntry() {
-  const month = document.getElementById('past-month').value;
-  const year = document.getElementById('past-year').value;
-  const ot = parseFloat(document.getElementById('past-ot').value) || 0;
-  const nd = parseFloat(document.getElementById('past-nd').value) || 0;
+  var month = document.getElementById('past-month').value;
+  var year = document.getElementById('past-year').value;
+  var otVal = document.getElementById('past-ot').value;
+  var ndVal = document.getElementById('past-nd').value;
   if (!year || year < 2000) { toast('Please enter a valid year'); return; }
-  const key = year + '-' + String(month).padStart(2,'0');
-  state.notepad[key] = { ot: parseFloat(ot.toFixed(2)), nd: parseFloat(nd.toFixed(2)), received: false, manual: true };
+  var key = year + '-' + String(month).padStart(2,'0');
+  var existing = state.notepad[key] || { ot: 0, nd: 0, otReceived: false, ndReceived: false };
+  state.notepad[key] = {
+    ot: otVal !== '' ? parseFloat(parseFloat(otVal).toFixed(2)) : existing.ot,
+    nd: ndVal !== '' ? parseFloat(parseFloat(ndVal).toFixed(2)) : existing.nd,
+    otReceived: existing.otReceived || false,
+    ndReceived: existing.ndReceived || false,
+    manual: true
+  };
   persist();
   document.getElementById('past-ot').value = '';
   document.getElementById('past-nd').value = '';
   togglePastForm();
   renderNotepad();
-  toast('Added ' + monthLabel(key));
+  toast('Saved ' + monthLabel(key));
 }
 
-function toggleReceived(key) {
-  if (state.notepad[key]) {
-    state.notepad[key].received = !state.notepad[key].received;
-    persist();
-    renderNotepad();
-  }
+function toggleOTReceived(key) {
+  if (state.notepad[key]) { state.notepad[key].otReceived = !state.notepad[key].otReceived; persist(); renderNotepad(); }
+}
+
+function toggleNDReceived(key) {
+  if (state.notepad[key]) { state.notepad[key].ndReceived = !state.notepad[key].ndReceived; persist(); renderNotepad(); }
 }
 
 function monthLabel(key) {
-  const [y,m] = key.split('-');
-  return new Date(y, m-1).toLocaleString('en-PH', {month:'long', year:'numeric'});
+  var parts = key.split('-');
+  return new Date(parts[0], parts[1]-1).toLocaleString('en-PH', {month:'long', year:'numeric'});
 }
 
 function renderNotepad() {
-  const el = document.getElementById('notepad-list');
-  const keys = Object.keys(state.notepad).sort().reverse();
+  var el = document.getElementById('notepad-list');
+  var keys = Object.keys(state.notepad).sort().reverse();
   if (!keys.length) {
     el.innerHTML = '<div class="empty">No records yet.<br>Save from the Calculator or add a past entry.</div>';
     return;
   }
   el.innerHTML = keys.map(function(k) {
-    const e = state.notepad[k];
-    const rcv = e.received || false;
+    var e = state.notepad[k];
+    var otRcv = e.otReceived || false;
+    var ndRcv = e.ndReceived || false;
     return '<div class="entry-row">'
-      + '<input type="checkbox" class="entry-check" ' + (rcv ? 'checked' : '') + ' onchange="toggleReceived(\'' + k + '\')" aria-label="Mark as received">'
-      + '<div class="entry-info">'
-      + '<div class="entry-month' + (rcv ? ' received' : '') + '">' + monthLabel(k) + '</div>'
-      + '<div class="entry-tag">' + (e.manual ? 'Manual entry' : 'From calculator') + (rcv ? ' · Received' : '') + '</div>'
+      + '<div class="entry-top">'
+      + '<div><div class="entry-month">' + monthLabel(k) + '</div>'
+      + '<div class="entry-tag">' + (e.manual ? 'Manual entry' : 'From calculator') + '</div></div>'
+      + '<button class="del-btn" onclick="delEntry(\'' + k + '\')" aria-label="Delete">\u2715</button>'
       + '</div>'
-      + '<div class="entry-amounts">'
-      + '<div class="amount-block"><div class="amount-val">' + fmt(e.ot) + '</div><div class="amount-lbl">OT</div></div>'
-      + '<div class="amount-block"><div class="amount-val">' + fmt(e.nd) + '</div><div class="amount-lbl">ND</div></div>'
-      + '</div>'
-      + '<button class="del-btn" onclick="delEntry(\'' + k + '\')" aria-label="Delete">&#10005;</button>'
-      + '</div>';
+      + '<div class="entry-bottom">'
+      + '<div class="entry-col' + (otRcv ? ' done' : '') + '">'
+      + '<input type="checkbox" ' + (otRcv ? 'checked' : '') + ' onchange="toggleOTReceived(\'' + k + '\')" aria-label="OT received">'
+      + '<div class="entry-col-info">'
+      + '<div class="entry-col-val' + (otRcv ? ' strike' : '') + '">' + fmt(e.ot) + '</div>'
+      + '<div class="entry-col-lbl">OT' + (otRcv ? ' \u00b7 Received' : '') + '</div>'
+      + '</div></div>'
+      + '<div class="entry-col' + (ndRcv ? ' done' : '') + '">'
+      + '<input type="checkbox" ' + (ndRcv ? 'checked' : '') + ' onchange="toggleNDReceived(\'' + k + '\')" aria-label="ND received">'
+      + '<div class="entry-col-info">'
+      + '<div class="entry-col-val' + (ndRcv ? ' strike' : '') + '">' + fmt(e.nd) + '</div>'
+      + '<div class="entry-col-lbl">ND' + (ndRcv ? ' \u00b7 Received' : '') + '</div>'
+      + '</div></div>'
+      + '</div></div>';
   }).join('');
 }
 
@@ -408,7 +394,7 @@ function saveSettings() {
 }
 
 function toast(msg) {
-  const t = document.getElementById('toast');
+  var t = document.getElementById('toast');
   t.textContent = msg;
   t.classList.add('show');
   setTimeout(function() { t.classList.remove('show'); }, 2200);
