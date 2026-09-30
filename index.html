@@ -96,6 +96,10 @@
         <button class="mode-btn" id="mode-other" onclick="setMode('other')">Others</button>
       </div>
       <div class="field" id="salary-field"></div>
+      <div class="field">
+        <label>Tax deduction (%)</label>
+        <input type="number" id="tax-percent" min="0" max="100" step="0.01" value="25" placeholder="25" oninput="compute()">
+      </div>
       <hr class="divider">
       <div class="group-label">Period</div>
       <div class="two-col">
@@ -254,10 +258,13 @@ function compute() {
   var regH = parseFloat(document.getElementById('ot-reg').value) || 0;
   var offH = parseFloat(document.getElementById('ot-off').value) || 0;
   var ndD  = parseFloat(document.getElementById('nd-days').value) || 0;
+  var taxEl = document.getElementById('tax-percent');
+  var taxPct = taxEl ? Math.min(100, Math.max(0, parseFloat(taxEl.value) || 0)) : 0;
+  var netFactor = 1 - (taxPct / 100);
   var hr   = sal / 22 / 8;
-  var reg  = hr * 1.25 * regH * 0.75;
-  var off  = hr * 1.5  * offH * 0.75;
-  var nd   = (sal / 22/8) * 0.20 * ndD*6 * 0.75;
+  var reg  = hr * 1.25 * regH * netFactor;
+  var off  = hr * 1.5  * offH * netFactor;
+  var nd   = (sal / 22/8) * 0.20 * ndD*6 * netFactor;
   document.getElementById('res-reg').textContent = fmt(reg);
   document.getElementById('res-off').textContent = fmt(off);
   document.getElementById('res-ot').textContent  = fmt(reg + off);
@@ -277,9 +284,12 @@ function saveFromCalc() {
   var month = document.getElementById('calc-month').value;
   var year  = document.getElementById('calc-year').value;
   if (!year || year < 2000) { toast('Please enter a valid year'); return; }
+  var taxEl = document.getElementById('tax-percent');
+  var taxPct = taxEl ? Math.min(100, Math.max(0, parseFloat(taxEl.value) || 0)) : 0;
+  var netFactor = 1 - (taxPct / 100);
   var hr  = sal / 22 / 8;
-  var ot  = (hr * 1.25 * regH * 0.75) + (hr * 1.5 * offH * 0.75);
-  var nd  = (sal / 22/8) * 0.20 * ndD * 6 * 0.75;
+  var ot  = (hr * 1.25 * regH * netFactor) + (hr * 1.5 * offH * netFactor);
+  var nd  = (sal / 22/8) * 0.20 * ndD * 6 * netFactor;
   var key = year + '-' + String(month).padStart(2,'0');
   var existing = state.notepad[key] || {};
   state.notepad[key] = { ot: parseFloat(ot.toFixed(2)), nd: parseFloat(nd.toFixed(2)), otReceived: existing.otReceived||false, ndReceived: existing.ndReceived||false, manual: false };
